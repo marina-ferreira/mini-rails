@@ -10,14 +10,18 @@ module ActiveRecord
       # Not implemented
     end
 
+    def self.table_name
+      name.downcase + 's'
+    end
+
     def self.find(id)
-      attributes = connection.execute("SELECT * FROM posts WHERE id = #{id.to_i}").first
+      attributes = connection.execute("SELECT * FROM #{table_name} WHERE id = #{id.to_i}").first
 
       new(attributes)
     end
 
     def self.all
-      list = connection.execute("SELECT * FROM posts")
+      list = connection.execute("SELECT * FROM #{table_name}")
       list.map { |attributes| new(attributes) }
     end
 
@@ -32,7 +36,7 @@ module ActiveRecord
 
     # Returns records attribute value
     def method_missing(name, *args)
-      columns = self.class.connection.columns('posts')
+      columns = self.class.connection.columns(self.class.table_name)
 
       if columns.include?(name)
         @attributes[name]
