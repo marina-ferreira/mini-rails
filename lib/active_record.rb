@@ -24,6 +24,11 @@ module ActiveRecord
       new(attributes)
     end
 
+    def self.all
+      list = connection.execute("SELECT * FROM posts")
+      list.map { |attributes| new(attributes)}
+    end
+
     def self.establish_connection(options)
       # @@var is a class variable, shared across all instances
       @@connection = ConnectionAdapter::SqliteAdapter.new(options[:database])
