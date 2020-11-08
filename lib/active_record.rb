@@ -15,14 +15,15 @@ module ActiveRecord
     end
 
     def self.find(id)
-      attributes = connection.execute("SELECT * FROM #{table_name} WHERE id = #{id.to_i}").first
-
-      new(attributes)
+      find_by_sql("SELECT * FROM #{table_name} WHERE id = #{id.to_i}").first
     end
 
     def self.all
-      list = connection.execute("SELECT * FROM #{table_name}")
-      list.map { |attributes| new(attributes) }
+      find_by_sql("SELECT * FROM #{table_name}")
+    end
+
+    def self.find_by_sql(sql)
+      connection.execute(sql).map { |attributes| new(attributes) }
     end
 
     def self.establish_connection(options)
