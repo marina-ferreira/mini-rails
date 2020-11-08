@@ -6,14 +6,6 @@ module ActiveRecord
       @attributes = attributes
     end
 
-    def id
-      @attributes[:id]
-    end
-
-    def title
-      @attributes[:title]
-    end
-
     def self.abstract_class=(value)
       # Not implemented
     end
@@ -26,7 +18,7 @@ module ActiveRecord
 
     def self.all
       list = connection.execute("SELECT * FROM posts")
-      list.map { |attributes| new(attributes)}
+      list.map { |attributes| new(attributes) }
     end
 
     def self.establish_connection(options)
@@ -36,6 +28,17 @@ module ActiveRecord
 
     def self.connection
       @@connection
+    end
+
+    # Returns records attribute value
+    def method_missing(name, *args)
+      columns = self.class.connection.columns('posts')
+
+      if columns.include?(name)
+        @attributes[name]
+      else
+        super
+      end
     end
   end
 end
