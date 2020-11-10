@@ -14,6 +14,11 @@ class ActiveSupportTest < MiniTest::Test
 
   def test_search_for_file_invalid
     file = ActiveSupport::Dependencies.search_for_file('unknown')
-    assert_equal nil, file
+    assert_nil file
+  end
+
+  def test_case_name
+    assert_equal 'post', :Post.to_s.underscore
+    assert_equal 'application_controller', :ApplicationController.to_s.underscore
   end
 end
