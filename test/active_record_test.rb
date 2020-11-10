@@ -1,12 +1,12 @@
 require 'test_helper'
 
 require 'active_record'
-
-require 'muffin_blog/app/models/application_record'
-require 'muffin_blog/app/models/post'
+require 'active_support'
 
 class ActiveRecordTest < Minitest::Test
   def setup
+    ActiveSupport::Dependencies.autoload_paths = Dir["#{__dir__}/muffin_blog/app/*"]
+
     Post.establish_connection database: "#{__dir__}/muffin_blog/db/development.sqlite3"
   end
 
