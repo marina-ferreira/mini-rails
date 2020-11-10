@@ -14,3 +14,16 @@ module ActiveSupport
     end
   end
 end
+
+class Module
+  def const_missing(name)
+    file_name = name.to_s.underscore
+
+    if file = ActiveSupport::Dependencies.search_for_file(file_name)
+      require file.sub(/\.rb$/, '')
+      const_get(name)
+    else
+      raise NameError, "Uninitialized constatnt #{name}"
+    end
+  end
+end
