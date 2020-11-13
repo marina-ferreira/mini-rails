@@ -1,7 +1,6 @@
 require 'test_helper'
 
-require 'active_record'
-require 'active_support'
+require_relative 'muffin_blog/config/environment'
 
 class ActiveRecordTest < Minitest::Test
   def setup
