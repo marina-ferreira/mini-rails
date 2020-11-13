@@ -1,15 +1,6 @@
 require 'test_helper'
 
-require 'active_record'
-require 'active_support'
-
 class ActiveRecordTest < Minitest::Test
-  def setup
-    ActiveSupport::Dependencies.autoload_paths = Dir["#{__dir__}/muffin_blog/app/*"]
-
-    Post.establish_connection database: "#{__dir__}/muffin_blog/db/development.sqlite3"
-  end
-
   def test_initialize
     post = Post.new(id: 1, title: 'The first post')
     assert_equal 1, post.id
