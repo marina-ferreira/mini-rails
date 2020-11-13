@@ -4,8 +4,6 @@ require_relative 'muffin_blog/config/environment'
 
 class ActiveRecordTest < Minitest::Test
   def setup
-    ActiveSupport::Dependencies.autoload_paths = Dir["#{__dir__}/muffin_blog/app/*"]
-
     Post.establish_connection database: "#{__dir__}/muffin_blog/db/development.sqlite3"
   end
 
