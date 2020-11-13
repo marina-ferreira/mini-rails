@@ -1,7 +1,5 @@
 require 'test_helper'
 
-require_relative 'muffin_blog/config/environment'
-
 class ActiveSupportTest < MiniTest::Test
   def test_search_for_file_valid
     file = ActiveSupport::Dependencies.search_for_file('application_controller')
