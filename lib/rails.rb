@@ -12,4 +12,8 @@ module Rails
   def self.application
     Application.instance
   end
+
+  def self.root
+    application.root
+  end
 end

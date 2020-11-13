@@ -10,7 +10,14 @@ module Rails
     end
 
     def initialize!
+      config_env_path = caller.first
+      @root = Pathname.new(File.expand_path('../..', config_env_path))
 
+      ActiveSupport::Dependencies.autoload_paths = Dir["#{@root}/app/*"]
+    end
+
+    def root
+      @root
     end
   end
 end
