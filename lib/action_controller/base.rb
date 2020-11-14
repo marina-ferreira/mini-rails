@@ -1,7 +1,7 @@
 module ActionController
   class Base < Metal
     include Callbacks
-    include RequestForgeryProtection
     include Redirecting
+    include RequestForgeryProtection
   end
 end
