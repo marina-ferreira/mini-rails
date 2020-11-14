@@ -34,4 +34,18 @@ class ActionControllerTest < MiniTest::Test
 
     assert_equal ['callback', 'show'], controller.response
   end
+
+  class Request
+    def params
+      { 'id' => 1 }
+    end
+  end
+
+  def test_real_controller
+    controller = PostsController.new
+    controller.request = Request.new
+    controller.process :show
+
+    assert_kind_of Post, controller.instance_variable_get(:@post)
+  end
 end
