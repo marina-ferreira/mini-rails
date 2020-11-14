@@ -1,9 +1,5 @@
 module ActionController
-  class Base
-    attr_accessor :request, :response
-
-    def process(action)
-      send(action)
-    end
+  class Base < Metal
+    include Callbacks
   end
 end
