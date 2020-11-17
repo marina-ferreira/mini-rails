@@ -5,11 +5,19 @@
 # run Rails.application
 
 app = lambda do |env|
-  [
-    200,
-    { 'Content-Type' => 'text/plain' },
-    ['hello!!']
-  ]
+  if env['REQUEST_METHOD'] == 'GET' && env['PATH_INFO'] == '/hello'
+    [
+      200,
+      { 'Content-Type' => 'text/plain' },
+      ['hello!!']
+    ]
+  else
+    [
+      404,
+      { 'Content-Type' => 'text/plain' },
+      ['Not found']
+    ]
+  end
 end
 
 #middleware structure
