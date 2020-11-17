@@ -35,6 +35,14 @@ class MiniSinatra
       ]
     end
   end
+
+  def self.application
+    @application ||= MiniSinatra.new
+  end
+end
+
+def get(path, &block)
+  MiniSinatra.application.add_route 'GET', path, &block
 end
 
 # middleware structure
@@ -52,12 +60,10 @@ class Logger
   end
 end
 
-
-app = MiniSinatra.new
-app.add_route 'GET', '/hello' do
+get '/hello' do
   'hello'
 end
-app.add_route 'GET', '/bye' do
+get '/bye' do
   'byebye'
 end
 
@@ -65,4 +71,4 @@ use Logger
 use Rack::ShowExceptions
 # use Rack::CommonLogger # works simililarly to Logger
 
-run app
+run MiniSinatra.application
