@@ -4,14 +4,12 @@
 
 # run Rails.application
 
-class App
-  def call(env)
-    [
-      200,
-      { 'Content-Type' => 'text/plain' },
-      ['hello!!']
-    ]
-  end
+app = lambda do |env|
+  [
+    200,
+    { 'Content-Type' => 'text/plain' },
+    ['hello!!']
+  ]
 end
 
-run App.new
+run app
