@@ -21,6 +21,11 @@ module ActionDispatch
       def find_route(request)
         @routes.detect { |route| route.match?(request) }
       end
+
+      def draw(&block)
+        mapper = Mapper.new(self)
+        mapper.instance_eval(&block)
+      end
     end
   end
 end
