@@ -9,6 +9,10 @@ class PostsController < ApplicationController
 
   end
 
+  def new
+
+  end
+
   private
 
   def set_post
