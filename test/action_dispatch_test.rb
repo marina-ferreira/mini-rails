@@ -44,4 +44,21 @@ class ActionDispatchTest < MiniTest::Test
     assert_equal 'new', route.action
     assert_equal 'new_post', route.name
   end
+
+  def test_call
+    routes = ActionDispatch::Routing::RouteSet.new
+    routes.draw do
+      root to: 'posts#index'
+      resources :posts
+    end
+
+    env = {
+      'REQUEST_METHOD' => 'GET',
+      'PATH_INFO' => '/posts/new'
+    }
+
+    status, header, body = routes.call(env)
+
+    assert_equal 200, status
+  end
 end
