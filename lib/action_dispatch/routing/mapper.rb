@@ -20,7 +20,7 @@ module ActionDispatch
         get "/#{plural_name}/new", to: "#{plural_name}#new",
                                    as: 'new_' + plural_name.to_s.singularize
         get "/#{plural_name}/show", to: "#{plural_name}#show",
-                                   as: plural_name.to_s.singularize
+                                    as: plural_name.to_s.singularize
       end
     end
   end
