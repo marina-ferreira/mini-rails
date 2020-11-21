@@ -15,10 +15,16 @@ module Rails
 
       ActiveSupport::Dependencies.autoload_paths = Dir["#{@root}/app/*"]
       ActiveRecord::Base.establish_connection database: "#{@root}/db/#{Rails.env}.sqlite3"
+
+      load @root.join('config/routes.rb')
     end
 
     def root
       @root
+    end
+
+    def routes
+      @routes ||= ActionDispatch::Routing::RouteSet.new
     end
   end
 end

@@ -46,6 +46,19 @@ class ActionDispatchTest < MiniTest::Test
   end
 
   def test_call
+    routes = Rails::Application.routes
+    request = Rack::MockRequest.new(routes)
+
+    assert request.get('/').ok?
+    assert request.get('/posts').ok?
+    assert request.get('/posts/new').ok?
+    assert request.get('/posts/show?id=1').ok?
+
+    assert request.post('/').not_found?
+  end
+
+  # How the test above would look like without rack mock
+  def test_call
     routes = ActionDispatch::Routing::RouteSet.new
     routes.draw do
       root to: 'posts#index'
@@ -58,7 +71,6 @@ class ActionDispatchTest < MiniTest::Test
     }
 
     status, header, body = routes.call(env)
-
     assert_equal 200, status
   end
 end
