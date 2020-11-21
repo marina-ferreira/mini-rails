@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'rack', '~> 2.x'
+  spec.add_dependency 'sprockets', '~> 3.0'
 
   spec.add_development_dependency 'rake', '~> 12.0'
   spec.add_development_dependency 'minitest', '~> 5.0'
@@ -32,4 +33,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'thin'
   spec.add_development_dependency 'rerun'
+  spec.add_development_dependency 'sass'
+  spec.add_development_dependency 'coffee-script'
 end
