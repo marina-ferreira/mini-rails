@@ -1,10 +1,10 @@
 module ActionView
   module Helpers
-    def stylesheet_link_tag
+    def stylesheet_link_tag(name, options = {})
       %Q{<link href="/assets/#{name}.css" media="all" rel="stylesheet" />}
     end
 
-    def javascript_link_tag
+    def javascript_include_tag(name, options = {})
       %Q{<script src="/assets/#{name}.js"></script>}
     end
 
