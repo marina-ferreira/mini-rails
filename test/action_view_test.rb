@@ -48,4 +48,11 @@ class ActionViewTest < MiniTest::Test
     controller.index
     assert_equal({ 'var' => 'var value' }, controller.view_assigns)
   end
+
+  def test_render
+    request = Rack::MockRequest.new(Rails.application)
+    response = request.get('/posts/show?id=1')
+
+    assert_match '<h1>Blueberry Muffins</h1>', response.body
+  end
 end
