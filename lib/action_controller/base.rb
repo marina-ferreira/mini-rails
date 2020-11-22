@@ -3,5 +3,6 @@ module ActionController
     include Callbacks
     include Redirecting
     include RequestForgeryProtection
+    include ActionView::Rendering
   end
 end
