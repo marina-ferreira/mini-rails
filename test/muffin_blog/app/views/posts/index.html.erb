@@ -1,0 +1,12 @@
+<h1>Muffin Blog</h1>
+
+<% @posts.each do |post| %>
+  <div class="post">
+    <h2><%= link_to post.title, post_path(post) %></h2>
+    <p><%= post.body %></p>
+  </div>
+<% end %>
+
+<p>
+  <%= link_to 'New Post', new_post_path %></h2>
+</p>
