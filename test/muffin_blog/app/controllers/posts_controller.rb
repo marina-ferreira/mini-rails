@@ -3,15 +3,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
-
-    response.write "<h1>The Muffin Blog</h1>"
-    @posts.each do |post|
-      response.write "<h2>#{post.title}</h2>"
-    end
   end
 
   def show
-
   end
 
   def new
