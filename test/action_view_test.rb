@@ -54,5 +54,6 @@ class ActionViewTest < MiniTest::Test
     response = request.get('/posts/show?id=1')
 
     assert_match '<h1>Blueberry Muffins</h1>', response.body
+    assert_match '<html>', response.body
   end
 end
