@@ -28,4 +28,12 @@ class ActionViewTest < MiniTest::Test
 
     assert_equal '<a href="/url">title</a>', template.render(context)
   end
+
+  def test_find_template
+    file = "#{__dir__}/muffin_blog/app/views/posts/index.html.erb"
+    template1 = ActionView::Template.find(file)
+    template2 = ActionView::Template.find(file)
+
+    assert_same template1, template2
+  end
 end
