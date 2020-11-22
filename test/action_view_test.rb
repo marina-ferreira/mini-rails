@@ -7,4 +7,18 @@ class ActionViewTest < MiniTest::Test
 
     assert_equal '<p>Hello<p>', template.render(context)
   end
+
+  def test_render_with_vars
+    template = ActionView::Template.new('<p><%= @var %><p>', 'test_helper_with_vars')
+    context = ActionView::Base.new var: 'var value'
+
+    assert_equal '<p>var value<p>', template.render(context)
+  end
+
+  def test_render_with_yield
+    template = ActionView::Template.new('<p><%= yield %><p>', 'test_helper_with_yield')
+    context = ActionView::Base.new var: 'var value'
+
+    assert_equal '<p>yielded content<p>', template.render(context) { 'yielded content' }
+  end
 end

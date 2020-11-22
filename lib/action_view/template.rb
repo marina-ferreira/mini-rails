@@ -6,9 +6,9 @@ module ActionView
       @compiled = false
     end
 
-    def render(context)
+    def render(context, &block)
       compile
-      context.send(method_name)
+      context.send(method_name, &block)
     end
 
     def method_name
