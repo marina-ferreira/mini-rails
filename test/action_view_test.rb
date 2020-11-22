@@ -36,4 +36,16 @@ class ActionViewTest < MiniTest::Test
 
     assert_same template1, template2
   end
+
+  class TestController < ActionController::Base
+    def index
+      @var = 'var value'
+    end
+  end
+
+  def test_view_assigns
+    controller = TestController.new
+    controller.index
+    assert_equal({ 'var' => 'var value' }, controller.view_assigns)
+  end
 end
