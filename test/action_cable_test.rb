@@ -23,16 +23,8 @@ class ActionCableTest < Minitest::Test
     end
   end
 
-  def test_websocket
-    received = nil
-
-    @websocket.on :message do |event|
-      received = event.data
-    end
-
-    @websocket.send 'hi!'
-
-    wait_for { received }
-    p received
+  def test_subscribe
+    connection = ActionCable.server.connections.first
+    assert connection
   end
 end
