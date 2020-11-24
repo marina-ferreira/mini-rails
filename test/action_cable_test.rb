@@ -30,5 +30,7 @@ class ActionCableTest < Minitest::Test
     @websocket.send(JSON.dump(command: 'subscribe', channel: 'ChatChannel'))
 
     wait_for { connection.subscriptions['ChatChannel'] }
+
+    assert ActionCable.server.pubsub.subscribed?('chat')
   end
 end

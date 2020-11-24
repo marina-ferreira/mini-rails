@@ -21,6 +21,10 @@ module ActionCable
         @websocket.rack_response
       end
 
+      def transmit(data)
+        @websocket.send JSON.dump(data)
+      end
+
       def execute_command(data)
         case data['command']
         when 'subscribe' then subscribe_to_channel(data)
@@ -30,7 +34,9 @@ module ActionCable
       def subscribe_to_channel(data)
         name = data['channel']
         channel_class = name.constantize
-        channel = channel_class.new
+        channel = channel_class.new(@server, self)
+
+        channel.subscribed if channel.respond_to? :subscribed
 
         @subscriptions[name] = channel
       end
