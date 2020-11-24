@@ -4,10 +4,11 @@ require Rails.root.join('app/channels/application_cable/connection')
 
 module ActionCable
   class Server
-    attr_reader :connections
+    attr_reader :connections, :pubsub
 
     def initialize
       @connections = []
+      @pubsub = SubscriptionAdapter::Inline.new
     end
 
     def call(env)
