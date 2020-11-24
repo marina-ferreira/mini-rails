@@ -26,5 +26,9 @@ class ActionCableTest < Minitest::Test
   def test_subscribe
     connection = ActionCable.server.connections.first
     assert connection
+
+    @websocket.send(JSON.dump(command: 'subscribe', channel: 'ChatChannel'))
+
+    wait_for { connection.subscriptions['ChatChannel'] }
   end
 end
