@@ -33,4 +33,18 @@ class ActionCableTest < Minitest::Test
 
     assert ActionCable.server.pubsub.subscribed?('chat')
   end
+
+  def test_message
+    @websocket.send(JSON.dump(command: 'subscribe', channel: 'ChatChannel'))
+
+    received = nil
+
+    @websocket.on :message do |event|
+      received = JSON.parse(event.data)
+    end
+    @websocket.send(JSON.dump(command: 'message', channel: 'ChatChannel', data: 'hi!'))
+
+    wait_for { received }
+    assert_equal({ 'channel' => 'ChatChannel', 'message' => 'hi!' }, received)
+  end
 end

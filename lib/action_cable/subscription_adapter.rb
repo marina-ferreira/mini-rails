@@ -14,7 +14,7 @@ module ActionCable
       end
 
       def broadcast(name, message)
-        @subscription[name].each do |block|
+        @subscriptions[name].each do |block|
           block.call(message)
         end
       end

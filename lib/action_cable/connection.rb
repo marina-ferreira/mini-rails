@@ -28,6 +28,7 @@ module ActionCable
       def execute_command(data)
         case data['command']
         when 'subscribe' then subscribe_to_channel(data)
+        when 'message' then find_channel(data).perform_action(data)
         end
       end
 
@@ -39,6 +40,10 @@ module ActionCable
         channel.subscribed if channel.respond_to? :subscribed
 
         @subscriptions[name] = channel
+      end
+
+      def find_channel(data)
+        @subscriptions.fetch(data['channel'])
       end
     end
   end
