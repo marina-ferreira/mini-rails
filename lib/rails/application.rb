@@ -40,9 +40,18 @@ module Rails
 
         map '/assets' do
           sprockets = Sprockets::Environment.new
-          sprockets.append_path Rails.root.join('app/assets/javascript')
+          sprockets.append_path Rails.root.join('app/assets/javascripts')
           sprockets.append_path Rails.root.join('app/assets/stylesheets')
+
+          Dir["#{__dir__}/../*/assets"].each do |path|
+            sprockets.append_path path
+          end
+
           run sprockets
+        end
+
+        map '/cable' do
+          run ActionCable.server
         end
       end
     end
