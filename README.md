@@ -3,7 +3,7 @@
     <br><br>Mini Rails<br/>
 </h1>
 <p align="center">
-  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/marina-ferreira/mini-rails?style=for-the-badge&color=red&logo=ruby">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/marina-ferreira/mini-rails?style=for-the-badge&color=ab1501&logo=ruby">
 
   <img alt="Ruby Version" src="https://img.shields.io/badge/ruby-2.7.0-ab1501?style=for-the-badge&logo=ruby">
 
@@ -23,13 +23,11 @@ Mini Rails is a gem developed during the Owning Rails course. Aiming the underst
 * ActionDispatch
 * ActionView
 
-<br />
 
 ## :floppy_disk: Dependencies
 
 -  [Ruby](https://www.ruby-lang.org/en/) - v2.7.0
 
-<br />
 
 ## Installation
 
